@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -18,14 +15,16 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "loan_application")
 public class LoanApplication {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int amount;
     @ManyToOne
     @JoinColumn(name = "borrower_id")
     private User borrower;
-    private Duration repaymentTerm;
+    private int repaymentTimeInDays;
     private double interestRate;
 
     @Override
@@ -34,7 +33,7 @@ public class LoanApplication {
                 "id=" + id +
                 ", amount=" + amount +
                 ", borrower=" + borrower +
-                ", repaymentTerm=" + repaymentTerm +
+                ", repaymentTerm=" + repaymentTimeInDays +
                 ", interestRate=" + interestRate +
                 '}';
     }

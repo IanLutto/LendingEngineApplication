@@ -13,7 +13,6 @@ import java.time.Duration;
 import java.util.Optional;
 
 @Service
-@Component
 public class LoanApplicationService {
 
     private final UserRepository userRepository;
@@ -27,13 +26,7 @@ public class LoanApplicationService {
         Optional<User> user = userRepository.findById(request.getBorrowerId());
 
         if (user.isPresent()){
-//            LoanApplication loanApplication = new LoanApplication();
-//            loanApplication.setAmount(request.getAmount());
-//            loanApplication.setBorrower(request.getBorrowerId());
-//            loanApplication.setRepaymentTerm(request.getDaysToRepay());
-//            loanApplication.setInterestRate(request.getInterestRate());
-
-            return new LoanApplication(request.getBorrowerId(), request.getAmount(), user.get(), Duration.ofDays(request.getDaysToRepay()), request.getInterestRate());
+            return new LoanApplication(request.getBorrowerId(), request.getAmount(), user.get(), request.getDaysToRepay(), request.getInterestRate());
         }else {
             throw new UserNotFoundException(request.getBorrowerId());
         }

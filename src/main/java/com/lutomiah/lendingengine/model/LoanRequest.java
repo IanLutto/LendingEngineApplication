@@ -1,18 +1,16 @@
 package com.lutomiah.lendingengine.model;
 
 import com.lutomiah.lendingengine.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.Duration;
 
-@AllArgsConstructor
 @Getter
-@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class LoanRequest {
 
